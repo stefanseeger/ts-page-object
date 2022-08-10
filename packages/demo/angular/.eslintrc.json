@@ -25,6 +25,10 @@
             "style": "kebab-case"
           }
         ]
+      },
+      "parserOptions": {
+        "project": ["./packages/demo/angular/tsconfig.json"],
+        "createDefaultProgram": true
       }
     },
     {

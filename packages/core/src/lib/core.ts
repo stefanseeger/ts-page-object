@@ -1,10 +1,7 @@
 /**
  * @returns first HTMLElement for selector
  */
-export const $ = (
-  element: HTMLElement,
-  selector: string,
-): HTMLElement | null => element.querySelector<HTMLElement>(selector);
+export const $ = (element: HTMLElement, selector: string): HTMLElement | null => element.querySelector<HTMLElement>(selector);
 
 /**
  * @returns all HTMLElements for selector
@@ -28,18 +25,27 @@ export const normalizeText = (
 };
 
 /** @returns ``element`` when ``selector`` is missing. Otherwise return the first element with the given ``selector``. */
-export function elementForOptionalSelector(element: HTMLElement, selector?: string): HTMLElement | null {
+export function elementForOptionalSelector(
+  element: HTMLElement,
+  selector?: string,
+): HTMLElement | null {
   return selector ? $(element, selector) : element;
 }
 
 /** @returns textContent of element */
-export const textContent = (element: HTMLElement, selector?: string): string | null => {
+export const textContent = (
+  element: HTMLElement,
+  selector?: string,
+): string | null => {
   const el = elementForOptionalSelector(element, selector);
   return (el && el.textContent) || null;
 };
 
 /** @returns an array of strings for the element and selector */
-export const textContents = (element: HTMLElement, selector: string): string[] => {
+export const textContents = (
+  element: HTMLElement,
+  selector: string,
+): string[] => {
   const htmlElements = $$(element, selector);
   if (htmlElements) {
     return htmlElements
@@ -53,9 +59,7 @@ export const textContents = (element: HTMLElement, selector: string): string[] =
 export const normalizedTextContent = (
   element: HTMLElement,
   selector?: string,
-): string | null => normalizeText(
-  textContent(element, selector),
-);
+): string | null => normalizeText(textContent(element, selector));
 
 /** @returns an array of strings for the element and selector */
 export const normalizedTextContents = (
@@ -117,7 +121,10 @@ export const waitToDisappear = async (
 };
 
 /** @returns textContent parsed as number */
-export const getNumber = (element: HTMLElement, selector?: string): number | null => {
+export const getNumber = (
+  element: HTMLElement,
+  selector?: string,
+): number | null => {
   const text = normalizedTextContent(element, selector);
   if (text) {
     return Number.parseInt(text, 10);
@@ -138,7 +145,11 @@ export const blur = (element: HTMLElement, selector?: string): void => {
 };
 
 /** Sets value in an InputElement */
-export const setValue = (element: HTMLElement, value: string, selector?: string): void => {
+export const setValue = (
+  element: HTMLElement,
+  value: string,
+  selector?: string,
+): void => {
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
   el.value = value;
   blur(element);
@@ -146,35 +157,48 @@ export const setValue = (element: HTMLElement, value: string, selector?: string)
 
 /** Click on InputElement */
 export const click = (element: HTMLElement, selector?: string): void => {
-  const el = (elementForOptionalSelector(element, selector) as HTMLElement);
+  const el = elementForOptionalSelector(element, selector) as HTMLElement;
   el.click();
   blur(el);
 };
 
 /** Checks if the element is checked */
-export const isChecked = (element: HTMLInputElement, selector?: string): boolean => {
-  const el = (elementForOptionalSelector(element, selector) as HTMLInputElement);
+export const isChecked = (
+  element: HTMLInputElement,
+  selector?: string,
+): boolean => {
+  const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
   return !!el.checked;
 };
 
 /** Gets the value of the element */
-export const getValue = (element: HTMLInputElement, selector?: string): string => {
-  const el = (elementForOptionalSelector(element, selector) as HTMLInputElement);
+export const getValue = (
+  element: HTMLInputElement,
+  selector?: string,
+): string => {
+  const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
   return el.value;
 };
 
 /** Checks if the element is valid */
-export const isValid = (element: HTMLInputElement, selector?: string): boolean => {
-  const el = (elementForOptionalSelector(element, selector) as HTMLInputElement);
+export const isValid = (
+  element: HTMLInputElement,
+  selector?: string,
+): boolean => {
+  const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
   return !JSON.parse(el.getAttribute('aria-invalid') ?? 'false');
 };
 
 /** dispatches keyUp event */
-export const keyUp = (element: HTMLInputElement, key: string, selector?: string): void => {
+export const keyUp = (
+  element: HTMLInputElement,
+  key: string,
+  selector?: string,
+): void => {
   const event = new KeyboardEvent('keyup', {
     key,
   });
-  const el = (elementForOptionalSelector(element, selector) as HTMLInputElement);
+  const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
   if (el) {
     el.dispatchEvent(event);
   } else {

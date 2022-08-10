@@ -18,5 +18,5 @@ export {
   waitToAppear,
   waitToDisappear,
   HTMLElementOrNot,
-  PageObject
+  PageObject,
 } from '@ts-page-objects/core';

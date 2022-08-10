@@ -25,6 +25,10 @@
             "style": "kebab-case"
           }
         ]
+      },
+      "parserOptions": {
+        "project": ["./packages/ngx-page-object/tsconfig.json"],
+        "createDefaultProgram": true
       }
     },
     {

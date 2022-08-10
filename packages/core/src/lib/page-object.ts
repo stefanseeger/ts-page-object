@@ -33,7 +33,7 @@ export abstract class PageObject {
   /** Initialize the PageObject by searching the selector from {@link PageObject#getSelector} in the provided `parentElement` */
   constructor(
     parentElement: HTMLElementOrNot,
-    useGetSelectorOfPageObject?: true
+    useGetSelectorOfPageObject?: true,
   );
   /** Initialize the PageObject by searching the  selector in the provided `parentElement` */
   constructor(parentElement: HTMLElementOrNot, selector?: string);
@@ -144,7 +144,7 @@ export abstract class PageObject {
   /**
    * Resolves promise when element is in DOM. Rejects after too many retries (3 seconds per default).
    * `ComponentFixture.autoDetectChanges()` should be called before
-  */
+   */
   protected async waitToAppear(
     selector: string,
     element?: HTMLElementOrNot,
@@ -166,7 +166,11 @@ export abstract class PageObject {
   }
 
   /** Sets value in an InputElement */
-  protected setValue(selector: string, value: string, element?: HTMLInputElement): void {
+  protected setValue(
+    selector: string,
+    value: string,
+    element?: HTMLInputElement,
+  ): void {
     setValue(this.sanitizeElement(element), value, selector);
   }
 
@@ -177,12 +181,18 @@ export abstract class PageObject {
 
   /** Checks if the element is checked */
   protected isChecked(selector: string, element?: HTMLInputElement): boolean {
-    return isChecked(this.sanitizeElement(element) as HTMLInputElement, selector);
+    return isChecked(
+      this.sanitizeElement(element) as HTMLInputElement,
+      selector,
+    );
   }
 
   /** Gets the value of the element */
   protected getValue(selector: string, element?: HTMLInputElement): string {
-    return getValue(this.sanitizeElement(element) as HTMLInputElement, selector);
+    return getValue(
+      this.sanitizeElement(element) as HTMLInputElement,
+      selector,
+    );
   }
 
   /** Checks if the element is valid */
@@ -196,7 +206,7 @@ export abstract class PageObject {
   }
 
   /** dispatches blur event */
-  protected blur(selector: string, element? : HTMLElement): void {
+  protected blur(selector: string, element?: HTMLElement): void {
     blur(this.sanitizeElement(element), selector);
   }
 }

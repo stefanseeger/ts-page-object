@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "unused-imports"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -18,13 +18,42 @@
               }
             ]
           }
-        ]
+        ],
+        "no-multi-spaces": "error",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "@typescript-eslint/object-curly-spacing": "off",
+        "max-len": [2, 160],
+        "semi": ["error"],
+        "no-console": "error",
+        "arrow-spacing": "error"
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "semi": "off",
+        "@typescript-eslint/semi": "error",
+        "max-len": [2, 160],
+        "comma-dangle": "off",
+        "@typescript-eslint/object-curly-spacing": "off",
+        "no-param-reassign": "off",
+        "no-plusplus": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": "error"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],

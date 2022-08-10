@@ -18,5 +18,5 @@ export {
   textContents,
   waitToAppear,
   waitToDisappear,
-  HTMLElementOrNot
+  HTMLElementOrNot,
 } from '@ts-page-objects/core';

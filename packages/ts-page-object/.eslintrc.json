@@ -8,7 +8,11 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "rules": {}
+      "rules": {},
+      "parserOptions": {
+        "project": ["./packages/ts-page-object/tsconfig.json"],
+        "createDefaultProgram": true
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
