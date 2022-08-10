@@ -1,0 +1,73 @@
+{
+  "root": "packages/demo/react",
+  "sourceRoot": "packages/demo/react/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/packages/demo/react",
+        "index": "packages/demo/react/src/index.html",
+        "baseHref": "/",
+        "main": "packages/demo/react/src/main.tsx",
+        "polyfills": "packages/demo/react/src/polyfills.ts",
+        "tsConfig": "packages/demo/react/tsconfig.app.json",
+        "assets": [
+          "packages/demo/react/src/favicon.ico",
+          "packages/demo/react/src/assets"
+        ],
+        "styles": ["packages/demo/react/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "packages/demo/react/src/environments/environment.ts",
+              "with": "packages/demo/react/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "demo-react:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "demo-react:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/demo/react/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/demo/react"],
+      "options": {
+        "jestConfig": "packages/demo/react/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

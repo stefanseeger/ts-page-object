@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { AppComponentPO } from './app.component.po';
-import { WelcomeComponent } from './welcome.component';
+import { act, render } from '@testing-library/react';
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let app: AppComponent;
-  let po: AppComponentPO;
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent, WelcomeComponent],
-    }).compileComponents();
-  });
+import App from './app';
+import { AppPO } from './app.po';
 
+describe('App', () => {
+  let po: AppPO;
+  let app: HTMLElement;
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    app = fixture.componentInstance;
-    fixture.autoDetectChanges();
-    po = new AppComponentPO(fixture);
+    const { baseElement } = render(<App />);
+    app = baseElement;
+    po = new AppPO(baseElement);
   });
-
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
@@ -52,9 +43,9 @@ describe('AppComponent', () => {
 
   it('should get textContents', () => {
     expect(po.getWelcome().getTextContents()).toStrictEqual([
-      'first\u00a0',
-      'second\u00a0',
-      'third\u00a0',
+      'first ',
+      'second ',
+      'third ',
     ]);
   });
 
@@ -73,7 +64,9 @@ describe('AppComponent', () => {
     expect(welcome.getWaitText()).toBeNull();
 
     // Click button
-    welcome.clickShowHideButton();
+    act(() => {
+      welcome.clickShowHideButton();
+    });
 
     // Text appears after a second
     await welcome.waitForTextAppear();
@@ -81,7 +74,9 @@ describe('AppComponent', () => {
     expect(welcome.getWaitText()).toBe('I am hear');
 
     // Click button again
-    welcome.clickShowHideButton();
+    act(() => {
+      welcome.clickShowHideButton();
+    });
 
     // Text disappears after one second
     await welcome.waitForTextDisappear();
