@@ -1,0 +1,24 @@
+{
+  "root": "packages/ts-page-object",
+  "sourceRoot": "packages/ts-page-object/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/ts-page-object",
+        "main": "packages/ts-page-object/src/index.ts",
+        "tsConfig": "packages/ts-page-object/tsconfig.lib.json",
+        "assets": ["packages/ts-page-object/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/ts-page-object/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

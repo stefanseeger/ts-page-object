@@ -1,0 +1,34 @@
+{
+  "projectType": "library",
+  "root": "packages/ngx-page-object",
+  "sourceRoot": "packages/ngx-page-object/src",
+  "prefix": "ts-page-object",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/packages/ngx-page-object"],
+      "options": {
+        "project": "packages/ngx-page-object/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/ngx-page-object/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/ngx-page-object/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "packages/ngx-page-object/src/**/*.ts",
+          "packages/ngx-page-object/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

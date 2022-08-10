@@ -1,4 +1,9 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "core": "packages/core",
+    "demo-angular": "packages/demo/angular",
+    "ngx-page-object": "packages/ngx-page-object",
+    "ts-page-object": "packages/ts-page-object"
+  }
 }

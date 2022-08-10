@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ts-page-objects/core": ["packages/core/src/index.ts"],
+      "@ts-page-objects/ngx-page-object": [
+        "packages/ngx-page-object/src/index.ts"
+      ],
+      "@ts-page-objects/ts-page-object": [
+        "packages/ts-page-object/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

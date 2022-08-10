@@ -1,4 +1,8 @@
-# Add files here to ignore them from prettier formatting
-
+.editorconfig
+.gitignore
+.husky
+.browserslistrc
+yarn.lock
+.prettierignore
 /dist
 /coverage
