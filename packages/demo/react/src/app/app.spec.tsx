@@ -97,7 +97,10 @@ describe('App', () => {
     const welcome = po.getWelcome();
     expect(welcome.isCheckboxChecked()).toBeFalsy();
 
-    welcome.checkCheckbox();
+    act(() => {
+      welcome.checkCheckbox();
+    });
+
     expect(welcome.isCheckboxChecked()).toBeTruthy();
   });
 
@@ -105,7 +108,10 @@ describe('App', () => {
     const welcome = po.getWelcome();
     expect(welcome.isCheckboxValid()).toBeFalsy();
 
-    welcome.checkCheckbox();
+    act(() => {
+      welcome.checkCheckbox();
+    });
+
     expect(welcome.isCheckboxValid()).toBeTruthy();
   });
 
