@@ -1,94 +1,53 @@
+# **ts-page-object** and **ngx-page-object**
 
+This repository is a mono repository which contains multiple page-object base projects
 
-# TsPageObject
+## What is a PageObject
 
-This project was generated using [Nx](https://nx.dev).
+The original idea of a **PageObject** dates back (as far as I know) to [Martin Fowler 2013](https://martinfowler.com/bliki/PageObject.html).
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+In short a **PageObject** should be a non HTML based functional API to the web application.
 
-🔎 **Smart, Fast and Extensible Build System**
+It is recommended to use one **PageObject** per component and page. That way you will gain maximum reuseability and encapsulation.
 
-## Adding capabilities to your workspace
+Examples for functions in **PageObject**s would be `clickContinue()`, `selectPassenger()`, `getPageTitle()`, `getAge()`
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+A function in a **PageObject** should **NEVER return HTMLElements**. Instead return `string`, `number`, `boolean`, `objects` or `arrays` (i know arrays are typeof objects in JS).
+And if your component or page is containing sub-components you should definetly write a own **PageObject** for the sub component and let the parent return it.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+## Why should I use ts-page-object or ngx-page-object
 
-Below are our core plugins:
+The **ts-page-object** and **ngx-page-object** are providing you with utility functions to quickly write nice **PageObjects**.
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+| Function               | Description                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| constructor            | creates the `PageObject` by the HTMLElement and when wanted with the selector                     |
+| $                      | first `HTMLElement` for selector                                                                  |
+| $$                     | all `HTMLElement`s for selector as array                                                          |
+| normalizeText          | Replaces all whitespace characters with a space. Remove multiple consequtive spaces. Strips       |
+| textContent            | textContent of first `HTMLElement`                                                                |
+| normalizedTextContent  | normalized textContent of first `HTMLElement`                                                     |
+| textContents           | array of textContent of all `HTMLElement`s                                                        |
+| normalizedTextContents | array or normalized textContent of all `HTMLElement`s                                             |
+| isDisplayed            | `true` when `HTMLElement` is in DOM                                                               |
+| idDisabled             | `true` when `HTMLElement` has `disabled` `attribute`                                              |
+| waitToAppear           | Resolves `Promise` when `HTMLElement` is in DOM. Waits 3 seconds per default before rejecting.    |
+| waitToDisappear        | Resolved `Promise` when `HTMLElement` is not in DOM. Waits 3 seconds per default before rejecting |
+| getFloat               | textContent as float number                                                                       |
+| getInt                 | textContent as int number                                                                         |
+| blur                   | send blur, input and change event to `HTMLElement`                                                |
+| setValue               | sets value `attribute` of `HTMLInputElement`                                                      |
+| getValue               | get value of value `attribute` of `HTMLInputElement`                                              |
+| click                  | clicks `HTMLElement`                                                                              |
+| isChecked              | `true` when `HTMLInputElement` has `checked` `attribute`                                          |
+| isValid                | `true` when `attribute` `aria-invalid` is not existing                                            |
+| keyUp                  | send `keyup` event with given key to HTMLInputElement                                             |
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+## How to use
 
-## Generate an application
+Simply create a class which `extends PageObject` and implement the `getSelector` function that it returns the `HTMLElements` selector.
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Check the demo applications in `packages/demo`
 
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@ts-page-objects/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+- [Angular](https://github.com/stefanseeger/ts-page-object/tree/main/packages/demo/angular)
+- [React](https://github.com/stefanseeger/ts-page-object/tree/main/packages/demo/react)

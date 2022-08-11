@@ -3,7 +3,8 @@ import {
   $$,
   blur,
   click,
-  getNumber,
+  getFloat,
+  getInt,
   getValue,
   isChecked,
   isDisplayed,
@@ -124,11 +125,17 @@ export abstract class PageObject {
     element?: HTMLElementOrNot,
   ): string[] => normalizedTextContents(this.sanitizeElement(element), selector);
 
-  /** @returns textContent parsed as number */
-  protected getNumber = (
+  /** @returns textContent parsed as int number */
+  protected getInt = (
     selector: string,
     element?: HTMLElementOrNot,
-  ): number | null => getNumber(this.sanitizeElement(element), selector);
+  ): number | null => getInt(this.sanitizeElement(element), selector);
+
+  /** @returns textContent parsed as float number */
+  protected getFloat = (
+    selector: string,
+    element?: HTMLElementOrNot,
+  ): number | null => getFloat(this.sanitizeElement(element), selector);
 
   /** @returns `true` when element or element with selector is in DOM. */
   public isDisplayed = (

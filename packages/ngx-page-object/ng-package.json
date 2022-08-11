@@ -3,5 +3,6 @@
   "dest": "../../dist/packages/ngx-page-object",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": ["../../README.md"]
 }

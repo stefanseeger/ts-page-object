@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 export function Welcome() {
   const [show, setShow] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   function toggleShowAfterOneSecond() {
     setShow(!show);
@@ -22,6 +23,14 @@ export function Welcome() {
         {show ? 'Hide' : 'Show'}
       </button>
       {show && <div data-test-id="wait">I am hear</div>}
+      <span data-test-id="price">123.20€</span>
+      <input
+        type="checkbox"
+        defaultChecked={checked}
+        onChange={() => setChecked(!checked)}
+        aria-invalid={!checked}
+      />
+      <input type="text" />
     </div>
   );
 }

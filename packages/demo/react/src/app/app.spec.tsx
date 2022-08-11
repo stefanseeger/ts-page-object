@@ -1,4 +1,5 @@
 import { act, render } from '@testing-library/react';
+import { normalizedTextContent } from '@ts-page-objects/ts-page-object';
 
 import App from './app';
 import { AppPO } from './app.po';
@@ -82,5 +83,42 @@ describe('App', () => {
     await welcome.waitForTextDisappear();
     expect(welcome.getShowHideButtonText()).toBe('Show');
     expect(welcome.getWaitText()).toBeNull();
+  });
+
+  it('should getFloat', () => {
+    expect(po.getWelcome().getPriceFloat()).toBe(123.2);
+  });
+
+  it('should getInt', () => {
+    expect(po.getWelcome().getPriceInt()).toBe(123);
+  });
+
+  it('should isChecked', () => {
+    const welcome = po.getWelcome();
+    expect(welcome.isCheckboxChecked()).toBeFalsy();
+
+    welcome.checkCheckbox();
+    expect(welcome.isCheckboxChecked()).toBeTruthy();
+  });
+
+  it('should isValid', () => {
+    const welcome = po.getWelcome();
+    expect(welcome.isCheckboxValid()).toBeFalsy();
+
+    welcome.checkCheckbox();
+    expect(welcome.isCheckboxValid()).toBeTruthy();
+  });
+
+  it('should getValue and setValue', () => {
+    const expected = 'some text';
+    const welcome = po.getWelcome();
+    expect(welcome.getTextValue()).toBe('');
+
+    welcome.setTextValue(expected);
+    expect(welcome.getTextValue()).toBe(expected);
+  });
+
+  it('should work with exported function', () => {
+    expect(normalizedTextContent(app, 'button')).toBe('Show');
   });
 });

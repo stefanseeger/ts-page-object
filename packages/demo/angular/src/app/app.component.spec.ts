@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { normalizedTextContent } from '@ts-page-objects/ts-page-object';
 import { AppComponent } from './app.component';
 import { AppComponentPO } from './app.component.po';
 import { WelcomeComponent } from './welcome.component';
@@ -10,6 +13,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent, WelcomeComponent],
+      imports: [CommonModule, FormsModule, ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -87,5 +91,42 @@ describe('AppComponent', () => {
     await welcome.waitForTextDisappear();
     expect(welcome.getShowHideButtonText()).toBe('Show');
     expect(welcome.getWaitText()).toBeNull();
+  });
+
+  it('should getFloat', () => {
+    expect(po.getWelcome().getPriceFloat()).toBe(123.2);
+  });
+
+  it('should getInt', () => {
+    expect(po.getWelcome().getPriceInt()).toBe(123);
+  });
+
+  it('should isChecked', () => {
+    const welcome = po.getWelcome();
+    expect(welcome.isCheckboxChecked()).toBeFalsy();
+
+    welcome.checkCheckbox();
+    expect(welcome.isCheckboxChecked()).toBeTruthy();
+  });
+
+  it('should isValid', () => {
+    const welcome = po.getWelcome();
+    expect(welcome.isCheckboxValid()).toBeFalsy();
+
+    welcome.checkCheckbox();
+    expect(welcome.isCheckboxValid()).toBeTruthy();
+  });
+
+  it('should getValue and setValue', () => {
+    const expected = 'some text';
+    const welcome = po.getWelcome();
+    expect(welcome.getTextValue()).toBe('');
+
+    welcome.setTextValue(expected);
+    expect(welcome.getTextValue()).toBe(expected);
+  });
+
+  it('should work with exported function', () => {
+    expect(normalizedTextContent(fixture.nativeElement, 'button')).toBe('Show');
   });
 });

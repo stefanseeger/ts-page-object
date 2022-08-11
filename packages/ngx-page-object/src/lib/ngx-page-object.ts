@@ -1,15 +1,18 @@
 import { ComponentFixture } from '@angular/core/testing';
-import { HTMLElementOrNot, PageObject } from '@ts-page-objects/core';
+import {
+  HTMLElementOrNot,
+  PageObject as TsPageObject,
+} from '@ts-page-objects/core';
 
 /** checks if the element is an ComponentFixture */
 export const isComponentFixture = (any: any): boolean => !!any.nativeElement;
 
-export abstract class NgxPageObject extends PageObject {
+export abstract class PageObject extends TsPageObject {
   /** Initialize PageObject for this ``fixture`` */
   constructor(fixture: ComponentFixture<unknown>, undefined?: undefined);
   /** Initialize PageObject for this exact ``componentElement`` */
   constructor(componentElement: HTMLElementOrNot, undefined?: undefined);
-  /** Initialize the PageObject by searching the selector from {@link NgxPageObject#getSelector} in the provided `parentElement` */
+  /** Initialize the PageObject by searching the selector from {@link PageObject#getSelector} in the provided `parentElement` */
   constructor(
     parentElement: HTMLElementOrNot,
     useGetSelectorOfPageObject?: true,

@@ -1,5 +1,24 @@
 {
   "name": "ts-page-object",
   "version": "0.0.1",
+  "author": {
+    "name": "Stefan Seeger",
+    "email": "dev@sseeger.de"
+  },
+  "keywords": [
+    "typescript",
+    "react",
+    "angular",
+    "test",
+    "jest",
+    "page-object",
+    "karma"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "git@github.com:stefanseeger/ts-page-object.git",
+    "directory": "packages/ts-page-object",
+    "type": "git"
+  },
   "type": "commonjs"
 }

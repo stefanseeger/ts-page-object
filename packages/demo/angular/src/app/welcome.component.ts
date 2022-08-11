@@ -19,6 +19,13 @@ import { Component, OnInit } from '@angular/core';
     <ng-container *ngIf="show"
       ><div data-test-id="wait">I am hear</div></ng-container
     >
+    <span data-test-id="price">123.20€</span>
+    <input
+      type="checkbox"
+      [(ngModel)]="checked"
+      [attr.aria-invalid]="!checked"
+    />
+    <input type="text" />
   `,
   styles: [],
 })
@@ -28,9 +35,9 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {}
 
   public show = false;
+  public checked = false;
 
   toggleShowAfterOneSecond() {
-    const that = this;
-    that.show = !that.show;
+    this.show = !this.show;
   }
 }

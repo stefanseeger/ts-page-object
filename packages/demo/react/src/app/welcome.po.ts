@@ -3,6 +3,9 @@ import { PageObject } from '@ts-page-objects/ts-page-object';
 const TITLE_SELECTOR = '[data-test-id="title"]';
 const SHOW_SELECTOR = '[data-test-id="show"]';
 const WAIT_SELECTOR = '[data-test-id="wait"]';
+const PRICE_SELECTOR = '[data-test-id="price"]';
+const CHECKBOX_SELECTOR = 'input[type="checkbox"]';
+const TEXT_SELECTOR = 'input[type="text"]';
 export class WelcomePO extends PageObject {
   public getSelector(): string {
     return '[data-test-id="welcome"]';
@@ -42,5 +45,33 @@ export class WelcomePO extends PageObject {
 
   public waitForTextDisappear() {
     return this.waitToDisappear(WAIT_SELECTOR);
+  }
+
+  public getPriceFloat() {
+    return this.getFloat(PRICE_SELECTOR);
+  }
+
+  public getPriceInt() {
+    return this.getInt(PRICE_SELECTOR);
+  }
+
+  public isCheckboxChecked() {
+    return this.isChecked(CHECKBOX_SELECTOR);
+  }
+
+  public checkCheckbox() {
+    return this.click(CHECKBOX_SELECTOR);
+  }
+
+  public isCheckboxValid() {
+    return this.isValid(CHECKBOX_SELECTOR);
+  }
+
+  public setTextValue(value: string) {
+    return this.setValue(TEXT_SELECTOR, value);
+  }
+
+  public getTextValue() {
+    return this.getValue(TEXT_SELECTOR);
   }
 }

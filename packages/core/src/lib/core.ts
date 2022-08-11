@@ -14,6 +14,62 @@ export const $$ = (element: HTMLElement, selector: string): HTMLElement[] => {
   return htmlElements;
 };
 
+/** @returns ``element`` when ``selector`` is missing. Otherwise return the first element with the given ``selector``. */
+export function elementForOptionalSelector(
+  element: HTMLElement,
+  selector?: string,
+): HTMLElement | null {
+  return selector ? $(element, selector) : element;
+}
+
+/** @returns `true` when element or element with selector is in DOM. */
+export const isDisplayed = (element: HTMLElement, selector = ''): boolean => !!elementForOptionalSelector(element, selector);
+
+/** Resolves promise when element is in DOM. Rejects after too many retries (3 seconds per default). */
+export const waitToAppear = async (
+  element: HTMLElement,
+  selector: string,
+  retries = 30,
+): Promise<void> => new Promise((resolve, reject) => {
+  let counter = 0;
+  const checkExist = setInterval(() => {
+    if (isDisplayed(element, selector)) {
+      clearInterval(checkExist);
+      resolve();
+    } else if (counter >= retries) {
+      reject();
+    }
+    counter++;
+  }, 100);
+});
+
+/** Wait for an Element to disappear from the dom and then resolve promise */
+export const waitToDisappear = async (
+  element: HTMLElement,
+  selector: string,
+  retries = 30,
+): Promise<void> => {
+  const currentElement = element;
+  return new Promise((resolve, reject) => {
+    let counter = 0;
+    const checkExist = setInterval(() => {
+      if (!$(currentElement, selector)) {
+        clearInterval(checkExist);
+        resolve();
+      } else if (counter >= retries) {
+        reject();
+      }
+      counter++;
+    }, 100);
+  });
+};
+
+export const throwNotFound = (element: HTMLElement | null | undefined) => {
+  if (!element) {
+    throw new Error('Element not found');
+  }
+};
+
 /** replaces all fancy white-space characters with spaces und trims surrounding spaces */
 export const normalizeText = (
   text: ChildNode | HTMLElement | string | null,
@@ -23,14 +79,6 @@ export const normalizeText = (
   }
   return (text && (text as string).replace(/\s+/g, ' ').trim()) || null;
 };
-
-/** @returns ``element`` when ``selector`` is missing. Otherwise return the first element with the given ``selector``. */
-export function elementForOptionalSelector(
-  element: HTMLElement,
-  selector?: string,
-): HTMLElement | null {
-  return selector ? $(element, selector) : element;
-}
 
 /** @returns textContent of element */
 export const textContent = (
@@ -75,53 +123,15 @@ export const normalizedTextContents = (
   return [];
 };
 
-/** @returns `true` when element or element with selector is in DOM. */
-export const isDisplayed = (element: HTMLElement, selector = ''): boolean => !!elementForOptionalSelector(element, selector);
-
 /** @returns `true` when element has disabled attribute. */
-export const isDisabled = (element: HTMLElement, selector: string): boolean => !!elementForOptionalSelector(element, selector)?.hasAttribute('disabled');
-
-/** Resolves promise when element is in DOM. Rejects after too many retries (3 seconds per default). */
-export const waitToAppear = async (
-  element: HTMLElement,
-  selector: string,
-  retries = 30,
-): Promise<void> => new Promise((resolve, reject) => {
-  let counter = 0;
-  const checkExist = setInterval(() => {
-    if (isDisplayed(element, selector)) {
-      clearInterval(checkExist);
-      resolve();
-    } else if (counter >= retries) {
-      reject();
-    }
-    counter++;
-  }, 100);
-});
-
-/** Wait for an Element to disappear from the dom and then resolve promise */
-export const waitToDisappear = async (
-  element: HTMLElement,
-  selector: string,
-  retries = 30,
-): Promise<void> => {
-  const currentElement = element;
-  return new Promise((resolve, reject) => {
-    let counter = 0;
-    const checkExist = setInterval(() => {
-      if (!$(currentElement, selector)) {
-        clearInterval(checkExist);
-        resolve();
-      } else if (counter >= retries) {
-        reject();
-      }
-      counter++;
-    }, 100);
-  });
+export const isDisabled = (element: HTMLElement, selector: string): boolean => {
+  const el = elementForOptionalSelector(element, selector);
+  throwNotFound(el);
+  return !!el!.hasAttribute('disabled');
 };
 
-/** @returns textContent parsed as number */
-export const getNumber = (
+/** @returns textContent parsed as int number */
+export const getInt = (
   element: HTMLElement,
   selector?: string,
 ): number | null => {
@@ -132,16 +142,25 @@ export const getNumber = (
   return null;
 };
 
+/** @returns textContent parsed as int number */
+export const getFloat = (
+  element: HTMLElement,
+  selector?: string,
+): number | null => {
+  const text = normalizedTextContent(element, selector);
+  if (text) {
+    return Number.parseFloat(text);
+  }
+  return null;
+};
+
 /** dispatches blur event */
 export const blur = (element: HTMLElement, selector?: string): void => {
   const el = elementForOptionalSelector(element, selector);
-  if (el) {
-    el?.dispatchEvent(new Event('input'));
-    el?.dispatchEvent(new Event('change'));
-    el?.dispatchEvent(new Event('blur'));
-  } else {
-    throw new Error('Element not found');
-  }
+  throwNotFound(el);
+  el?.dispatchEvent(new Event('input'));
+  el?.dispatchEvent(new Event('change'));
+  el?.dispatchEvent(new Event('blur'));
 };
 
 /** Sets value in an InputElement */
@@ -151,13 +170,15 @@ export const setValue = (
   selector?: string,
 ): void => {
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
+  throwNotFound(el);
   el.value = value;
-  blur(element);
+  blur(el);
 };
 
-/** Click on InputElement */
+/** Click on HTMLElement */
 export const click = (element: HTMLElement, selector?: string): void => {
   const el = elementForOptionalSelector(element, selector) as HTMLElement;
+  throwNotFound(el);
   el.click();
   blur(el);
 };
@@ -168,6 +189,7 @@ export const isChecked = (
   selector?: string,
 ): boolean => {
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
+  throwNotFound(el);
   return !!el.checked;
 };
 
@@ -177,6 +199,7 @@ export const getValue = (
   selector?: string,
 ): string => {
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
+  throwNotFound(el);
   return el.value;
 };
 
@@ -186,6 +209,7 @@ export const isValid = (
   selector?: string,
 ): boolean => {
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
+  throwNotFound(el);
   return !JSON.parse(el.getAttribute('aria-invalid') ?? 'false');
 };
 
@@ -199,9 +223,6 @@ export const keyUp = (
     key,
   });
   const el = elementForOptionalSelector(element, selector) as HTMLInputElement;
-  if (el) {
-    el.dispatchEvent(event);
-  } else {
-    throw new Error('Element not found');
-  }
+  throwNotFound(el);
+  el.dispatchEvent(event);
 };

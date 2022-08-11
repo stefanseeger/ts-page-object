@@ -2,6 +2,6 @@
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
+## Build
 
-Run `nx build ts-page-object` to build the library.
+Run `npx nx build ts-page-object` to build the library.

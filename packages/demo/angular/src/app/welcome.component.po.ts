@@ -1,9 +1,13 @@
-import {NgxPageObject} from '@ts-page-objects/ngx-page-object';
+import { PageObject } from '@ts-page-objects/ngx-page-object';
 
 const TITLE_SELECTOR = '[data-test-id="title"]';
+const LIST_ITEM_SELECTOR = 'li';
 const SHOW_SELECTOR = '[data-test-id="show"]';
 const WAIT_SELECTOR = '[data-test-id="wait"]';
-export class WelcomeComponentPO extends NgxPageObject {
+const PRICE_SELECTOR = '[data-test-id="price"]';
+const CHECKBOX_SELECTOR = 'input[type="checkbox"]';
+const TEXT_SELECTOR = 'input[type="text"]';
+export class WelcomeComponentPO extends PageObject {
   public getSelector(): string {
     return 'app-welcome';
   }
@@ -17,11 +21,11 @@ export class WelcomeComponentPO extends NgxPageObject {
   }
 
   public getTextContents(): string[] {
-    return this.textContents('li');
+    return this.textContents(LIST_ITEM_SELECTOR);
   }
 
   public getNormalizedTextContents(): string[] {
-    return this.normalizedTextContents('li');
+    return this.normalizedTextContents(LIST_ITEM_SELECTOR);
   }
 
   public getShowHideButtonText(): string | null {
@@ -42,5 +46,33 @@ export class WelcomeComponentPO extends NgxPageObject {
 
   public waitForTextDisappear() {
     return this.waitToDisappear(WAIT_SELECTOR);
+  }
+
+  public getPriceFloat() {
+    return this.getFloat(PRICE_SELECTOR);
+  }
+
+  public getPriceInt() {
+    return this.getInt(PRICE_SELECTOR);
+  }
+
+  public isCheckboxChecked() {
+    return this.isChecked(CHECKBOX_SELECTOR);
+  }
+
+  public checkCheckbox() {
+    return this.click(CHECKBOX_SELECTOR);
+  }
+
+  public isCheckboxValid() {
+    return this.isValid(CHECKBOX_SELECTOR);
+  }
+
+  public setTextValue(value: string) {
+    return this.setValue(TEXT_SELECTOR, value);
+  }
+
+  public getTextValue() {
+    return this.getValue(TEXT_SELECTOR);
   }
 }

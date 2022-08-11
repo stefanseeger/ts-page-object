@@ -1,8 +1,8 @@
-import {NgxPageObject} from '@ts-page-objects/ngx-page-object';
+import { PageObject } from '@ts-page-objects/ngx-page-object';
 
-import {WelcomeComponentPO} from './welcome.component.po';
+import { WelcomeComponentPO } from './welcome.component.po';
 
-export class AppComponentPO extends NgxPageObject {
+export class AppComponentPO extends PageObject {
   public getSelector(): string {
     return 'app-root';
   }
