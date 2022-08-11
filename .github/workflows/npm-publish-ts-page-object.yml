@@ -18,7 +18,7 @@ jobs:
       - run: npm ci
       - run: npx nx run-many --all --target=test --ci=true
   publish-npm:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
