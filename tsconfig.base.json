@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "core": ["libs/core/src/main.ts"],
-      "ngx-page-object": ["libs/ngx-page-object/src/main.ts"],
-      "react-ts-page-object": ["libs/react-ts-page-object/src/main.ts"],
-      "ts-page-object": ["libs/ts-page-object/src/main.ts"]
+      "core": ["libs/core/src/index.ts"],
+      "ngx-page-object": ["libs/ngx-page-object/src/index.ts"],
+      "react-ts-page-object": ["libs/react-ts-page-object/src/index.ts"],
+      "ts-page-object": ["libs/ts-page-object/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

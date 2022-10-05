@@ -14,7 +14,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/react-ts-page-object/src/main.ts",
+        "main": "libs/react-ts-page-object/src/index.ts",
         "outputPath": "dist/libs/react-ts-page-object",
         "compiler": "babel",
         "tsConfig": "libs/react-ts-page-object/tsconfig.lib.json",
@@ -25,7 +25,9 @@
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "external": ["@testing-library/react"],
+        "updateBuildableProjectDepsInPackageJson": false
       },
       "configurations": {
         "production": {

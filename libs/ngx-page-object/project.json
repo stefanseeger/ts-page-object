@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/ngx-page-object/src/main.ts",
+        "main": "libs/ngx-page-object/src/index.ts",
         "outputPath": "dist/libs/ngx-page-object",
         "compiler": "babel",
         "tsConfig": "libs/ngx-page-object/tsconfig.lib.json",

@@ -7,7 +7,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/ts-page-object/src/main.ts",
+        "main": "libs/ts-page-object/src/index.ts",
         "outputPath": "dist/libs/ts-page-object",
         "compiler": "babel",
         "tsConfig": "libs/ts-page-object/tsconfig.lib.json",

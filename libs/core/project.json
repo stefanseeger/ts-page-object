@@ -6,7 +6,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "main": "libs/core/src/main.ts",
+        "main": "libs/core/src/index.ts",
         "outputPath": "dist/libs/core",
         "compiler": "babel",
         "tsConfig": "libs/core/tsconfig.lib.json",

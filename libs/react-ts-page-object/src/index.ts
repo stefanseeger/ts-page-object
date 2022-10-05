@@ -1,4 +1,4 @@
-export * from './lib/page-object';
+export * from './lib/react-ts-page-object';
 
 export {
   elementForOptionalSelector,
