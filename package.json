@@ -1,6 +1,6 @@
 {
   "name": "ts-page-objects",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "lint": "nx run-many --all --target=lint --parallel --fix",
