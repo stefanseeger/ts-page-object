@@ -3,7 +3,7 @@
   "sourceRoot": "packages/react-ts-page-object/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:swc",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/react-ts-page-object",
@@ -17,14 +17,6 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/react-ts-page-object/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/react-ts-page-object"],
-      "options": {
-        "jestConfig": "packages/react-ts-page-object/jest.config.js",
-        "passWithNoTests": true
       }
     }
   },

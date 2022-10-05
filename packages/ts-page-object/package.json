@@ -1,6 +1,6 @@
 {
   "name": "ts-page-object",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Stefan Seeger",
     "email": "dev@sseeger.de"
@@ -21,8 +21,5 @@
     "type": "git"
   },
   "type": "commonjs",
-  "dependencies": {
-    "@swc/helpers": "~0.3.3"
-  },
   "devDependencies": {}
 }
