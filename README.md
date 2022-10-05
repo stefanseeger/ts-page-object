@@ -49,5 +49,5 @@ Simply create a class which `extends PageObject` and implement the `getSelector`
 
 Check the demo applications in `packages/demo`
 
-- [Angular](https://github.com/stefanseeger/ts-page-object/tree/main/packages/demo/angular)
-- [React](https://github.com/stefanseeger/ts-page-object/tree/main/packages/demo/react)
+- [Angular](https://github.com/stefanseeger/ts-page-object/tree/main/libs/demo/angular)
+- [React](https://github.com/stefanseeger/ts-page-object/tree/main/libs/demo/react)

@@ -28,7 +28,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npx nx run ngx-page-object:build
-      - run: cp README.md ./dist/packages/ngx-page-object
-      - run: npm publish ./dist/packages/ngx-page-object
+      - run: npm publish ./dist/libs/ngx-page-object
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

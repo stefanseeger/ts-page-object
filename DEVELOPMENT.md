@@ -10,14 +10,14 @@ The following projects are published to NPMJS.
 
 Can be used for testing all typescript and HTMLElement based frameworks.
 
-- [README](./packages/ts-page-object/README.md)
+- [README](./libs/ts-page-object/README.md)
 - [NPM Package](https://www.npmjs.com/package/ts-page-object)
 
 ### ngx-page-object
 
 Can be used for testing specifically [Angular](https://angular.io/).
 
-- [README](./packages/ngx-page-object/README.md)
+- [README](./libs/ngx-page-object/README.md)
 - [NPM Package](https://www.npmjs.com/package/ngx-page-object)
 
 ## Demo projects
@@ -28,13 +28,13 @@ The following projects are used as showcase, examples and for automatic testing 
 
 Contains a minimal example of how to use the **ts-page-object**
 
-- [README](./packages/demo/react/README.md)
+- [README](./libs/demo/react/README.md)
 
 ### Angular
 
 Contains a minimal example of how to use the **ngx-page-object**
 
-- [README](./packages/demo/angular/README.md)
+- [README](./libs/demo/angular/README.md)
 
 ## Development server
 

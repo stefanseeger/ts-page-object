@@ -1,11 +1,12 @@
 {
   "version": 2,
   "projects": {
-    "demo-angular": "packages/demo/angular",
-    "demo-react": "packages/demo/react",
-    "ngx-page-object": "packages/ngx-page-object",
-    "react-ts-page-object": "packages/react-ts-page-object",
-    "ts-page-object": "packages/ts-page-object"
+    "core": "libs/core",
+    "demo-angular": "apps/demo/angular",
+    "demo-react": "apps/demo/react",
+    "ngx-page-object": "libs/ngx-page-object",
+    "react-ts-page-object": "libs/react-ts-page-object",
+    "ts-page-object": "libs/ts-page-object"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

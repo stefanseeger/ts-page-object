@@ -28,7 +28,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npx nx run react-ts-page-object:build --ci=true
-      - run: cp README.md ./dist/packages/react-ts-page-object
-      - run: npm publish ./dist/packages/react-ts-page-object
+      - run: npm publish ./dist/libs/react-ts-page-object
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
