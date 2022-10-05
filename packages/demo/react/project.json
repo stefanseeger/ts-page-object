@@ -1,10 +1,10 @@
 {
-  "root": "packages/demo/react",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/demo/react/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:webpack",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -37,11 +37,17 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         }
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/webpack:dev-server",
       "options": {
         "buildTarget": "demo-react:build",
         "hmr": true
@@ -50,8 +56,12 @@
         "production": {
           "buildTarget": "demo-react:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "demo-react:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -64,7 +74,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/demo/react"],
       "options": {
-        "jestConfig": "packages/demo/react/jest.config.js",
+        "jestConfig": "packages/demo/react/jest.config.ts",
         "passWithNoTests": true
       }
     }

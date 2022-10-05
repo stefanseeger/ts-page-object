@@ -1,5 +1,5 @@
 {
-  "root": "packages/ts-page-object",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ts-page-object/src",
   "targets": {
     "build": {

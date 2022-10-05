@@ -1,6 +1,6 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "packages/ngx-page-object",
   "sourceRoot": "packages/ngx-page-object/src",
   "prefix": "ts-page-object",
   "targets": {
