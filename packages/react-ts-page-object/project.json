@@ -1,0 +1,32 @@
+{
+  "root": "packages/react-ts-page-object",
+  "sourceRoot": "packages/react-ts-page-object/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/react-ts-page-object",
+        "main": "packages/react-ts-page-object/src/index.ts",
+        "tsConfig": "packages/react-ts-page-object/tsconfig.lib.json",
+        "assets": ["packages/react-ts-page-object/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/react-ts-page-object/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/react-ts-page-object"],
+      "options": {
+        "jestConfig": "packages/react-ts-page-object/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

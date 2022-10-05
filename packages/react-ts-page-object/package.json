@@ -1,0 +1,9 @@
+{
+  "name": "react-ts-page-object",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@testing-library/react": ">=13.0.0",
+    "ts-page-object": ">=0.0.1"
+  }
+}

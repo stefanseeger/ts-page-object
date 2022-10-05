@@ -3,7 +3,7 @@
   "sourceRoot": "packages/ts-page-object/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/ts-page-object",

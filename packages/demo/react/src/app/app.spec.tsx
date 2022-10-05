@@ -1,5 +1,5 @@
-import { act, render } from '@testing-library/react';
-import { normalizedTextContent } from '@ts-page-objects/ts-page-object';
+import { render } from '@testing-library/react';
+import { normalizedTextContent } from 'ts-page-object';
 
 import App from './app';
 import { AppPO } from './app.po';
@@ -65,9 +65,7 @@ describe('App', () => {
     expect(welcome.getWaitText()).toBeNull();
 
     // Click button
-    act(() => {
-      welcome.clickShowHideButton();
-    });
+    welcome.clickShowHideButton();
 
     // Text appears after a second
     await welcome.waitForTextAppear();
@@ -75,9 +73,7 @@ describe('App', () => {
     expect(welcome.getWaitText()).toBe('I am hear');
 
     // Click button again
-    act(() => {
-      welcome.clickShowHideButton();
-    });
+    welcome.clickShowHideButton();
 
     // Text disappears after one second
     await welcome.waitForTextDisappear();
@@ -97,9 +93,7 @@ describe('App', () => {
     const welcome = po.getWelcome();
     expect(welcome.isCheckboxChecked()).toBeFalsy();
 
-    act(() => {
-      welcome.checkCheckbox();
-    });
+    welcome.checkCheckbox();
 
     expect(welcome.isCheckboxChecked()).toBeTruthy();
   });
@@ -108,9 +102,7 @@ describe('App', () => {
     const welcome = po.getWelcome();
     expect(welcome.isCheckboxValid()).toBeFalsy();
 
-    act(() => {
-      welcome.checkCheckbox();
-    });
+    welcome.checkCheckbox();
 
     expect(welcome.isCheckboxValid()).toBeTruthy();
   });

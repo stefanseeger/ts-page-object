@@ -10,7 +10,7 @@
       "files": ["*.ts", "*.tsx"],
       "rules": {},
       "parserOptions": {
-        "project": ["./packages/core/tsconfig.json"],
+        "project": ["./packages/react-ts-page-object/tsconfig.json"],
         "createDefaultProgram": true
       }
     },

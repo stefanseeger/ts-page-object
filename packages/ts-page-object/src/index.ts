@@ -1,23 +1,2 @@
-export {
-  $,
-  $$,
-  blur,
-  click,
-  getInt,
-  getFloat,
-  getValue,
-  isChecked,
-  isDisplayed,
-  isValid,
-  keyUp,
-  normalizedTextContent,
-  normalizedTextContents,
-  normalizeText,
-  setValue,
-  textContent,
-  textContents,
-  waitToAppear,
-  waitToDisappear,
-  HTMLElementOrNot,
-  PageObject,
-} from '@ts-page-objects/core';
+export * from './lib/core';
+export * from './lib/page-object';

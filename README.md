@@ -1,4 +1,4 @@
-# **ts-page-object** and **ngx-page-object**
+# **ts-page-object**, **ngx-page-object** and **react-ts-page-object**
 
 This repository is a mono repository which contains multiple page-object base projects
 

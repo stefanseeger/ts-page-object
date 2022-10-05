@@ -1,4 +1,5 @@
-export * from './lib/ngx-page-object';
+export * from './lib/page-object';
+
 export {
   $,
   $$,

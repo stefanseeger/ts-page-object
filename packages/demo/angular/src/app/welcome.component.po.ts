@@ -1,4 +1,4 @@
-import { PageObject } from '@ts-page-objects/ngx-page-object';
+import { PageObject } from 'ngx-page-object';
 
 const TITLE_SELECTOR = '[data-test-id="title"]';
 const LIST_ITEM_SELECTOR = 'li';

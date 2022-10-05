@@ -1,8 +1,5 @@
 import { ComponentFixture } from '@angular/core/testing';
-import {
-  HTMLElementOrNot,
-  PageObject as TsPageObject,
-} from '@ts-page-objects/core';
+import { HTMLElementOrNot, PageObject as TsPageObject } from 'ts-page-object';
 
 /** checks if the element is an ComponentFixture */
 export const isComponentFixture = (any: any): boolean => !!any.nativeElement;

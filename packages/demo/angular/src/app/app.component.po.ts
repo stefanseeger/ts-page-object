@@ -1,4 +1,4 @@
-import { PageObject } from '@ts-page-objects/ngx-page-object';
+import { PageObject } from 'ngx-page-object';
 
 import { WelcomeComponentPO } from './welcome.component.po';
 

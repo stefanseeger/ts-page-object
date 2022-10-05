@@ -1,4 +1,4 @@
-import { PageObject } from '@ts-page-objects/ts-page-object';
+import { PageObject } from 'react-ts-page-object';
 
 const TITLE_SELECTOR = '[data-test-id="title"]';
 const SHOW_SELECTOR = '[data-test-id="show"]';

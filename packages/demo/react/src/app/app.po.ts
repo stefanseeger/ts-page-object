@@ -1,4 +1,4 @@
-import { PageObject } from '@ts-page-objects/core';
+import { PageObject } from 'react-ts-page-object';
 import { WelcomePO } from './welcome.po';
 
 export class AppPO extends PageObject {

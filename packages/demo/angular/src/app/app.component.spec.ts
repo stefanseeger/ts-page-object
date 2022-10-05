@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { normalizedTextContent } from '@ts-page-objects/ts-page-object';
+import { normalizedTextContent } from 'ts-page-object';
 import { AppComponent } from './app.component';
 import { AppComponentPO } from './app.component.po';
 import { WelcomeComponent } from './welcome.component';

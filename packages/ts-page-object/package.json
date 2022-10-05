@@ -20,5 +20,9 @@
     "directory": "packages/ts-page-object",
     "type": "git"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@swc/helpers": "~0.3.3"
+  },
+  "devDependencies": {}
 }
